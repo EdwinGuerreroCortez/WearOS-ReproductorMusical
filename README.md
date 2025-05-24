@@ -11,6 +11,4 @@ La aplicación tendrá dos niveles de navegación:
 - Jetpack Compose
 - Android Studio (emulador)
 - Material Design para Wear OS
-
-## Estado del proyecto
-Actualmente en etapa de diseño. Próximamente se integrará la estructura funcional en Jetpack Compose.
+ 
