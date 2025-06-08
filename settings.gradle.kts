@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ReproductorMusica"
 include(":app")
+include(":phone")

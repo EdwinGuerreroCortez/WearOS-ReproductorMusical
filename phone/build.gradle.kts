@@ -5,16 +5,17 @@ plugins {
 }
 
 android {
-    namespace = "com.kronnoz.reproductormusica"
+    namespace = "com.kronnoz.reproductormusica" // ✅ Coincide con el reloj
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.kronnoz.reproductormusica"
-        minSdk = 30
+        applicationId = "com.kronnoz.reproductormusica" // ✅ Muy importante que coincida
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,46 +27,42 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
-
-    implementation(libs.play.services.wearable)
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
-    implementation(libs.wear.tooling.preview)
-    implementation(libs.activity.compose)
-    implementation(libs.core.splashscreen)
-    implementation(libs.navigation.compose)
-    implementation(libs.material.icons.extended)
-    implementation(libs.material3.android)
-    implementation(libs.material)
-// Para Gson (JSON)
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("androidx.compose.foundation:foundation:1.4.3") // o mayor
-    implementation ("androidx.wear.compose:compose-material:1.2.0")
-// Para corrutinas + Task.await()
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    implementation(libs.material3)
+
+    // ✅ Comunicación Wear OS
     implementation("com.google.android.gms:play-services-wearable:19.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 
-// Para Compose (ya debes tenerlo, pero lo agrego por claridad)
-    implementation("androidx.compose.runtime:runtime:1.5.1")
+    // ✅ JSON
+    implementation("com.google.code.gson:gson:2.10.1")
 
-
+    // Test
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
